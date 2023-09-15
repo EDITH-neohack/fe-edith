@@ -1,0 +1,70 @@
+.cihamburger-md-icon {
+    position: absolute;
+    top: 64px;
+    left: 88px;
+    width: 72px;
+    height: 55px;
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #2e2e2e;
+    width: 100vw;  /* Set to viewport width */
+    height: 100vh; /* Set to viewport height */
+    overflow: hidden; /* Prevent scroll */
+    text-align: center;
+    font-size: 48px;
+    color: #ededed;
+    font-family: var(--font-poppins);
+}
+
+.whom-are-you {
+    margin-bottom: 40px;
+    width: 730px;
+    height: 152px;
+}
+
+.home-child {
+    display: flex;
+    align-items: center;
+    border-radius: 90px;
+    background-color: #3a3a3a;
+    width: 730px; /* Adjusted width to match text above */
+    height: 78px;
+    position: relative;
+}
+
+.search-input {
+    background-color: #3a3a3a;
+    color: #f8f8f8;
+    border: none;
+    padding-left: 30px; /* Adjusted padding to move text */
+    padding-right: 40px;
+    border-radius: 90px;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 100;
+}
+
+.search-icon {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.vector-icon {
+    margin-top: 20px;
+    width: 2.99%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    cursor: pointer;
+}
