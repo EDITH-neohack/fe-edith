@@ -29,11 +29,10 @@
 
 .home-child {
     display: flex;
-    align-items: center;
     border-radius: 90px;
     background-color: #3a3a3a;
     width: 730px; /* Adjusted width to match text above */
-    height: 78px;
+    height: 91px;
     position: relative;
 }
 
@@ -67,4 +66,10 @@
     overflow: hidden;
     max-height: 100%;
     cursor: pointer;
+}
+
+
+.form-container{
+    width: 80%;
+    height: 95%;
 }
