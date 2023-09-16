@@ -1,11 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 import Home from './Home/home';
 
-function App() {
+export default function App() {
   return (
-    <Home/>
+    <Home />
   );
 }
-
-export default App;

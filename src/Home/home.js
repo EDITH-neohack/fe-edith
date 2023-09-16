@@ -4,71 +4,46 @@ import searchSVG from './../asset/search.svg'
 import hamSVG from './../asset/ham.svg';
 import collectionSVG from './../asset/collection.svg';
 import SearchContainer from "../search/search.component";
+import environment from "../utils/environments";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const onVectorIconClick = useCallback(() => {
-
   }, []);
 
   const [search, setSearch] = useState("");
   const [sampleData, setSampleData] = useState([])
   const [searchFocused, setSearchFocused] = useState(false);
   const [hamburgerIcon, setHamburgerIcon] = useState(hamSVG);
+  const [savedCollections, setSavedCollections] = useState([]);
+  const navigate = useNavigate();
 
   
   const handleSearchActivation = () => {
     setSearchFocused(true);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if(!search) return;
 
-    handleSearchActivation()
+    handleSearchActivation();
 
-    setSampleData([
-      {
-          "student_id": "12345",
-          "candidateName": "John Doe",
-          "email": "john.doe@example.com",
-          "phone_number": {"country_code": "+1", "number": "555-123-4567"},
-          "urls": {"linkedin": "https://linkedin.com/johndoe"},
-          "current_company": "ABC Inc.",
-          "years": 3,
-          "resumeUrl": "https://storage.cloud.google.com/edith-resumes/FY'23%20Accenture%20ATCI%20Technology%20Solutions%20IPS%20CL10.pdf",
-          "latest_company": {"role": "Software Engineer", "company": "XYZ Tech"},
-          "experience": [
-              {"role": "Software Developer", "company": "Tech Solutions", "start_year": 2018, "end_year": 2021},
-              {"role": "Intern", "company": "Internship Corp.", "start_year": 2017, "end_year": 2018},
-          ],
-          "education": [
-              {"university": "University of XYZ", "start_yr": 2014, "end_yr": 2018},
-              {"university": "ABC State University", "start_yr": 2010, "end_yr": 2014},
-          ],
-          "skills": ["Python", "Java", "JavaScript", "SQL"], 
-      },
-      {
-          "student_id": "67890",
-          "candidateName": "Jane Smith",
-          "email": "jane.smith@example.com",
-          "phone_number": {"country_code": "+44", "number": "20-1234-5678"},
-          "urls": {"linkedin": "https://linkedin.com/janesmith"},
-          "current_company": "XYZ Corp.",
-          "years": 5,
-          "resumeUrl": "https://storage.cloud.google.com/edith-resumes/ATC-%20B-Schools%20Flyer%20V2.pdf",
-          "latest_company": {"role": "Data Scientist", "company": "Data Co."},
-          "experience": [
-              {"role": "Data Analyst", "company": "Data Insights", "start_year": 2016, "end_year": 2017},
-              {"role": "Research Assistant", "company": "Research Lab", "start_year": 2015, "end_year": 2016},
-          ],
-          "education": [
-              {"university": "ABC University", "start_yr": 2010, "end_yr": 2014},
-              {"university": "University of PQR", "start_yr": 2006, "end_yr": 2010},
-          ],
-          "skills": ["Data Analysis", "Machine Learning", "Statistics", "R"],
-      },
-    ]);
+    let payload = {
+      limit: 10,
+      search
+    }
+
+    let { data } = await axios.post(`${environment.HOST_LINK}/search`, payload);
+
+    setSampleData(data.results);
+    setSavedCollections(data.savedList);
+  }
+
+  const handleRoute = () => {
+    navigate('/collections')
   }
 
   return (
@@ -79,6 +54,7 @@ const Home = () => {
                 src={hamburgerIcon} 
                 onMouseOver={() => setHamburgerIcon(collectionSVG)}
                 onMouseOut={() => setHamburgerIcon(hamSVG)}
+                onClick={handleRoute}
             />
 
 {!searchFocused && <b className="whom-are-you">Whom are you recruiting today?</b>}
@@ -107,7 +83,7 @@ const Home = () => {
       {
         <div>
           {
-            sampleData.map((item) => <SearchContainer {...item}/>)
+            sampleData.map((item, idx) => <SearchContainer key={idx} {...item}/>)
           }
         </div>
       }
