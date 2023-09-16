@@ -17,7 +17,6 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    text-align: center;
     font-size: 48px;
     color: #ededed;
     font-family: var(--font-poppins);
@@ -42,7 +41,7 @@
 .home-child.activated {
     position: absolute;
     top: 64px;
-    left: 230px; /* Increased distance to prevent overlap with ham.svg */
+    /* left: 230px; Increased distance to prevent overlap with ham.svg */
 }
 
 .search-input {
@@ -73,4 +72,18 @@
 .form-container{
     width: 80%;
     height: 95%;
+}
+
+.search-container {
+    margin-top: 10%;
+    overflow: auto;
+    margin-left: 1.5rem;
+}
+
+.search-container::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.search-container::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Hide the thumb */
 }

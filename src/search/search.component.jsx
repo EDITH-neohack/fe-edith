@@ -13,24 +13,29 @@ function downloadFile(url) {
 }
 
 
-const CandidateCard = ({ candidateName, urls, latest_company, years, resumeUrl }) => {
+const CandidateCard = ({ name, linkedin, totalYearsExperience, downloadLink }) => {
     return (
         <div className="candidateCard">
             <div className="candidateDetails">
                 <div className="textContainer"> {/* This container will wrap the name and info */}
-                    <b className="candidateName">{candidateName}</b>
-                    <p className="candidateInfo">
-                        {latest_company.company} | {years} years experience
-                    </p>
+                    <div><p className="candidateName"><strong>{name}</strong></p></div>
+                    <div><p className="candidateInfo">
+                        {totalYearsExperience} years experience
+                    </p></div>
                 </div>
                 
                 <div className="iconsContainer">
-                    <a href={resumeUrl || "#"} target="_blank" rel="noopener noreferrer">
+                    <a href={downloadLink || "#"} target="_blank" rel="noopener noreferrer">
                         <img className="icon" alt="View CV" src={viewCVSVG} />
                     </a>
-                    <a href={urls.linkedin || "#"} target="_blank" rel="noopener noreferrer">
-                        <img className="icon" alt="LinkedIn" src={linkedinSVG} />
-                    </a>
+                    {
+                        linkedin && (
+                            <a href={linkedin || "#"} target="_blank" rel="noopener noreferrer">
+                                <img className="icon" alt="LinkedIn" src={linkedinSVG} />
+                            </a>
+                        )
+                    }
+                    
                     <img className="icon" alt="Add to Collection" src={collectionSVG} />
                 </div>
             </div>
@@ -42,11 +47,10 @@ const CandidateCard = ({ candidateName, urls, latest_company, years, resumeUrl }
 
 const SearchContainer = (props) => {
     console.log("props ", props)
-    
 
     return (
 
-        <div className={styles.resultsContainer}>
+        <div className="resultsContainer">
             <CandidateCard {...props} />
         </div>
         

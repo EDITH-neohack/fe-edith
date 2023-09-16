@@ -36,9 +36,22 @@ const Home = () => {
       search
     }
 
-    let { data } = await axios.post(`${environment.HOST_LINK}/search`, payload);
+    // let { data } = await axios.post(`${environment.HOST_LINK}/get_all_documents`, payload);
+    let { data } = await axios.get(`${environment.HOST_LINK}/get_all_documents`);
+    
+    let formateData = [];
 
-    setSampleData(data.results);
+    data.documents.forEach((item) => (
+      formateData.push({
+        downloadLink: `https://storage.googleapis.com/edith-resumes/${item.meta.fileName}`,
+        name: item.data.name.raw,
+        totalYearsExperience: item.data.totalYearsExperience,
+        linkedin: item.data.linkedin
+      })
+    ))
+
+    console.log("data", data);
+    setSampleData(formateData);
     setSavedCollections(data.savedList);
   }
 
@@ -81,7 +94,7 @@ const Home = () => {
       />
 
       {
-        <div>
+        <div className={searchFocused && `search-container`}>
           {
             sampleData.map((item, idx) => <SearchContainer key={idx} {...item}/>)
           }
