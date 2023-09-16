@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import "./home.css";
 import searchSVG from './../asset/search.svg'
 import hamSVG from './../asset/ham.svg';
+import collectionSVG from './../asset/collection.svg';
 import SearchContainer from "../search/search.component";
 
 const Home = () => {
@@ -11,11 +12,20 @@ const Home = () => {
 
   const [search, setSearch] = useState("");
   const [sampleData, setSampleData] = useState([])
+  const [searchFocused, setSearchFocused] = useState(false);
+  const [hamburgerIcon, setHamburgerIcon] = useState(hamSVG);
+
+  
+  const handleSearchActivation = () => {
+    setSearchFocused(true);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if(!search) return;
+
+    handleSearchActivation()
 
     setSampleData([
       {
@@ -26,7 +36,7 @@ const Home = () => {
           "urls": {"linkedin": "https://linkedin.com/johndoe"},
           "current_company": "ABC Inc.",
           "years": 3,
-          "resumeUrl": "https://example.com/johndoe/resume",
+          "resumeUrl": "https://storage.cloud.google.com/edith-resumes/FY'23%20Accenture%20ATCI%20Technology%20Solutions%20IPS%20CL10.pdf",
           "latest_company": {"role": "Software Engineer", "company": "XYZ Tech"},
           "experience": [
               {"role": "Software Developer", "company": "Tech Solutions", "start_year": 2018, "end_year": 2021},
@@ -46,7 +56,7 @@ const Home = () => {
           "urls": {"linkedin": "https://linkedin.com/janesmith"},
           "current_company": "XYZ Corp.",
           "years": 5,
-          "resumeUrl": "https://example.com/janesmith/resume",
+          "resumeUrl": "https://storage.cloud.google.com/edith-resumes/ATC-%20B-Schools%20Flyer%20V2.pdf",
           "latest_company": {"role": "Data Scientist", "company": "Data Co."},
           "experience": [
               {"role": "Data Analyst", "company": "Data Insights", "start_year": 2016, "end_year": 2017},
@@ -63,10 +73,18 @@ const Home = () => {
 
   return (
     <div className="home">
-      <img className="cihamburger-md-icon" alt="" src={hamSVG} />
-      <b className="whom-are-you">Whom are you recruiting today?</b>
+            <img 
+                className="cihamburger-md-icon" 
+                alt="" 
+                src={hamburgerIcon} 
+                onMouseOver={() => setHamburgerIcon(collectionSVG)}
+                onMouseOut={() => setHamburgerIcon(hamSVG)}
+            />
+
+{!searchFocused && <b className="whom-are-you">Whom are you recruiting today?</b>}
+
       
-      <div className="home-child">
+      <div className={searchFocused ? "home-child activated" : "home-child"}>
           <form className="form-container" onSubmit={handleSubmit}>
             <input
                 type="text"
@@ -95,7 +113,8 @@ const Home = () => {
       }
 
     </div>
-  );
-};
+  )
+}
 
 export default Home;
+
