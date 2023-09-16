@@ -4,6 +4,7 @@ import linkedinSVG from './../asset/linkedin.svg';
 import viewCVSVG from './../asset/viewCV.svg';
 import collectionSVG from './../asset/collection.svg';
 
+
 function downloadFile(url) {
     const link = document.createElement("a");
     link.href = url;

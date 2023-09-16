@@ -1,0 +1,44 @@
+.collections {
+    background-color: #282c34; /* Dark background, similar to your App-header in App.css */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* This will align content to the top of the container */
+    font-size: calc(10px + 2vmin);
+    color: white; /* Text color set to white for contrast against the dark background */
+    text-align: center;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+}
+
+.cihamburger-md-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px; /* Adjusted margin to give space from top */
+}
+
+h1 {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.collection-list {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+    margin-bottom: 500px;
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center; /* Center the cards */
+}
+
+
+/* Add any other styles that are specific to the Collections page if needed */
