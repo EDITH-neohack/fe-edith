@@ -89,7 +89,7 @@ const Collections = () => {
                 onClick={handleRoute}
             />
 
-            <h1>Collections</h1>
+            <h1>Saved Collections</h1>
 
             <div className="collection-list">
                 {
