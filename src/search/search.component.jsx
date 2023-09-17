@@ -1,27 +1,34 @@
-import React from 'react';
-import styles from './search.styles.css';
+import React, { useState } from 'react';
 import linkedinSVG from './../asset/linkedin.svg';
 import viewCVSVG from './../asset/viewCV.svg';
 import collectionSVG from './../asset/collection.svg';
+import UnSavedSVG from './../asset/unsaved.svg';
 
 
-function downloadFile(url) {
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "File.pdf"; // Or dynamically generate filename if needed
-    link.click();
-    link.remove();
-}
 
 
-const CandidateCard = ({ name, linkedin, totalYearsExperience, downloadLink }) => {
+
+const CandidateCard = ({ id, name, linkedin, totalYearsExperience, downloadLink, profession, isSaved }) => {
+
+    const [saved, setSaved] = useState(isSaved);
+
+
+    const handleSaveBookMarks = (id) => {
+        setSaved(!saved);
+        
+        // code to update and remove from saved list
+    }
+
     return (
         <div className="candidateCard">
             <div className="candidateDetails">
                 <div className="textContainer"> {/* This container will wrap the name and info */}
                     <div><p className="candidateName"><strong>{name}</strong></p></div>
-                    <div><p className="candidateInfo">
-                        {totalYearsExperience} years experience
+                    <div><p className="candidateInfo"> 
+                    { profession ? `${ profession } | ` : ""}
+                    {
+                        totalYearsExperience === 0 ? "Fresher" : `${ totalYearsExperience } years experience`
+                    }
                     </p></div>
                 </div>
                 
@@ -37,7 +44,7 @@ const CandidateCard = ({ name, linkedin, totalYearsExperience, downloadLink }) =
                         )
                     }
                     
-                    <img className="icon" alt="Add to Collection" src={collectionSVG} />
+                    <img className="icon bookmark" alt="Add to Collection" src={saved ? collectionSVG : UnSavedSVG} onClick={() => handleSaveBookMarks(id)}/>
                 </div>
             </div>
         </div>

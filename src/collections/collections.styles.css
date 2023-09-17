@@ -1,5 +1,5 @@
 .collections {
-    background-color: #282c34; /* Dark background, similar to your App-header in App.css */
+    background-color: #2e2e2e; /* Dark background, similar to your App-header in App.css */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -8,7 +8,8 @@
     font-size: calc(10px + 2vmin);
     color: white; /* Text color set to white for contrast against the dark background */
     text-align: center;
-    padding: 20px;
+    height: 100vh;
+    /* overflow: hidden; */
 }
 
 .header {
@@ -26,18 +27,19 @@
 
 h1 {
     flex: 1;
-    margin: 0;
-    padding: 0;
 }
 
 .collection-list {
     width: 100%;
     max-width: 800px;
     margin-top: 20px;
-    margin-bottom: 500px;
+    /* margin-bottom: 500px; */
     /* display: flex; */
     flex-direction: column;
     align-items: center; /* Center the cards */
+    overflow: auto;
+    height: 80vh;
+    box-sizing: border-box;
 }
 
 

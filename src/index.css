@@ -21,3 +21,16 @@ body {
   /* fonts */
   --font-poppins: Poppins;
 }
+
+/* ::-webkit-scrollbar {
+	width: 4px;
+}
+::-webkit-scrollbar-track {
+	background: #fff;
+}
+::-webkit-scrollbar-thumb {
+	background: #000;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: rgb(161, 161, 161);
+} */
