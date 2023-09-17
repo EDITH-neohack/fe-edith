@@ -76,9 +76,9 @@
 }
 
 .search-container {
-    margin-top: 10%;
+    margin-top: 13%;
     overflow: auto;
-    /* margin-left: 1.5rem; */
+    margin-left: 1.5rem;
 }
 
 .search-container::-webkit-scrollbar {
