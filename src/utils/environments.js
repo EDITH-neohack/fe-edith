@@ -1,5 +1,5 @@
 const environment = {
-    HOST_LINK: 'http://34.125.127.172:80'
+    HOST_LINK: 'https://api.veyr.tech'
 };
 
 export default environment;
